@@ -14,7 +14,6 @@ def test_already_sorted():
 
 def _run_test(testInput, expectedOutput):
     testInput = [str(x) for x in testInput]
-    proc = subprocess.Popen([argv[1], '2', '3', '4', '8'], stdout=subprocess.PIPE)
     proc = subprocess.Popen([argv[1]] + testInput, stdout=subprocess.PIPE)
     stdout, _ = proc.communicate()
     assert stdout.strip() == expectedOutput
