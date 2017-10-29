@@ -44,7 +44,6 @@ void insSort(int *arr, int arrLen) {
         j = i - 1;
         p = i;
         while (j >= 0 && arr[p] < arr[j]) {
-            printArr(arr, arrLen);
             swap(arr, p, j);
             j--;
             p--;
@@ -60,7 +59,7 @@ void swap(int *arr, int i , int j) {
 
 void printArr(int *arr, int arrLen) {
     for (int i = 0; i < arrLen; i++) {
-        printf("%d,", arr[i]);
+        printf("%d ", arr[i]);
     }
     printf("\n");
 }
