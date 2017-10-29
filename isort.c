@@ -7,14 +7,14 @@
 int *readInArray(int, char **);
 bool elementNotValid(char);
 void insSort(int *, int);
+void swap(int *arr, int i, int j);
+void printArr(int *, int);
 
 int main(int argc, char **argv) {
     int *arr = readInArray(argc, argv);
     int arrLen = argc - 1;
-
-    for (int i = 0; i < arrLen; i++) {
-        printf("%d\n", arr[i]);
-    }
+    insSort(arr, arrLen);
+    printArr(arr, arrLen);
 }
 
 /* FN implementations */
@@ -38,4 +38,29 @@ bool elementNotValid(char element) {
 }
 
 void insSort(int *arr, int arrLen) {
+    int j;
+    int p;
+    for (int i = 0; i < arrLen; i++) {
+        j = i - 1;
+        p = i;
+        while (j >= 0 && arr[p] < arr[j]) {
+            printArr(arr, arrLen);
+            swap(arr, p, j);
+            j--;
+            p--;
+        }
+    }
+}
+
+void swap(int *arr, int i , int j) {
+    int swp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = swp;
+}
+
+void printArr(int *arr, int arrLen) {
+    for (int i = 0; i < arrLen; i++) {
+        printf("%d,", arr[i]);
+    }
+    printf("\n");
 }
