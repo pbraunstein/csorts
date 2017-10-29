@@ -15,6 +15,8 @@ int main(int argc, char **argv) {
     int arrLen = argc - 1;
     insSort(arr, arrLen);
     printArr(arr, arrLen);
+
+    free(arr);
 }
 
 /* FN implementations */
