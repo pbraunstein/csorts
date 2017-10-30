@@ -8,7 +8,7 @@
 int *readInArray(int, char **);
 
 /* Returns false if the element is not a digit; otherwise returns true */
-bool elementNotValid(char);
+bool elementNotValid(char *);
 
 /*
  * Swaps elements in indices i and j in arr. Caller is responsible for

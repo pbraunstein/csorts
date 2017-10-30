@@ -10,7 +10,7 @@ int *readInArray(int argc, char **argv) {
     int *arr = (int *) malloc(sizeof(int) * (argc - 1));
 
     for (int i = 1; i < argc; i++) {
-        if (elementNotValid(*argv[i])) {
+        if (elementNotValid(argv[i])) {
             printf("ERROR: %s is not an integer\n", argv[i]);
             exit(1);
         }
@@ -20,8 +20,16 @@ int *readInArray(int argc, char **argv) {
     return arr;
 }
 
-bool elementNotValid(char element) {
-    return !isdigit(element);
+bool elementNotValid(char *element) {
+    char c;
+    int i = 0;
+    while ((c = element[i]) != '\0') {
+        if (!isdigit(c) &&  c != '-') {
+            return true;
+        }
+        i++;
+    }
+    return false;
 }
 
 void swap(int *arr, int i , int j) {
