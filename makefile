@@ -1,5 +1,5 @@
 isort:
-	gcc -Werror isort.c -o isort
+	gcc -Werror isort.c sortutils.c -o isort
 clean:
 	rm isort
 
