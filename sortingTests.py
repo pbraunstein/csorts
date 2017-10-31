@@ -15,6 +15,16 @@ def main():
     test_one_element_negative()
     test_one_element_positive()
 
+    # test two elements sorted
+    test_two_elements_sorted_positive()
+    test_two_elements_sorted_negative()
+    test_two_elements_sorted_negative_to_positive()
+
+    # test two elements unsorted
+    test_two_elements_unsorted_positive()
+    test_two_elements_unsorted_negative()
+    test_two_elements_unsorted_positive_to_negative()
+
     # already sorted tests
     test_already_sorted_positive()
     test_alread_sorted_negative()
@@ -67,6 +77,30 @@ def test_reverse_order_negative():
 def test_reverse_order_negative_to_positive():
     print "test reverse order negative to positive.....",
     _run_test([1092, 12, 0, -2, -6, -8, -100], '-100 -8 -6 -2 0 12 1092')
+
+def test_two_elements_sorted_positive():
+    print "test two elements sorted positive.....",
+    _run_test([3, 6], '3 6')
+
+def test_two_elements_sorted_negative():
+    print "test two elements sorted negative.....",
+    _run_test([-100, -50], '-100 -50')
+
+def test_two_elements_sorted_negative_to_positive():
+    print "test two elements sorted negative to positive.....",
+    _run_test([-190, 280], '-190 280')
+
+def test_two_elements_unsorted_positive():
+    print "test two elements unsorted positive.....",
+    _run_test([90, 20], '20 90')
+
+def test_two_elements_unsorted_negative():
+    print "test two elements unsorted negative.....",
+    _run_test([-3, -2000], '-2000 -3')
+
+def test_two_elements_unsorted_positive_to_negative():
+    print "test two elements unsorted positive to negative.....",
+    _run_test([100, -20], '-20 100')
 
 def _run_test(testInput, expectedOutput):
     testInput = [str(x) for x in testInput]
