@@ -35,6 +35,11 @@ def main():
     test_reverse_order_negative()
     test_reverse_order_negative_to_positive()
 
+    # test sorted except for edges
+    test_sorted_except_zero_element()
+    test_sorted_except_last_element()
+    test_sorted_except_both_edges()
+
     print "ALL", argv[1].upper(), "TESTS PASS"
     print
 
@@ -101,6 +106,18 @@ def test_two_elements_unsorted_negative():
 def test_two_elements_unsorted_positive_to_negative():
     print "test two elements unsorted positive to negative.....",
     _run_test([100, -20], '-20 100')
+
+def test_sorted_except_zero_element():
+    print "test sorted except zero element.....",
+    _run_test([0, -9, -4, -3, -1], '-9 -4 -3 -1 0')
+
+def test_sorted_except_last_element():
+    print "test sorted except last element.....",
+    _run_test([1, 2, 3, 4, 0], '0 1 2 3 4')
+
+def test_sorted_except_both_edges():
+    print "test sorted except both edges.....",
+    _run_test([90, 1, 2, 3, 4, 0], '0 1 2 3 4 90')
 
 def _run_test(testInput, expectedOutput):
     testInput = [str(x) for x in testInput]
