@@ -20,6 +20,14 @@ def main():
     test_alread_sorted_negative()
     test_already_sorted_negative_to_positive()
 
+    # test reverse order
+    test_reverse_order_positive()
+    test_reverse_order_negative()
+    test_reverse_order_negative_to_positive()
+
+    print "ALL", argv[1].upper(), "TESTS PASS"
+    print
+
 def test_empty():
     print "test empty.....",
     _run_test([], '')
@@ -48,12 +56,24 @@ def test_already_sorted_negative_to_positive():
     print "test already sorted negative to positive.....",
     _run_test([-6, -4, -2, -1, 0, 3, 5, 90], '-6 -4 -2 -1 0 3 5 90')
 
+def test_reverse_order_positive():
+    print "test reverse order positive.....",
+    _run_test([4, 3, 2, 1], '1 2 3 4')
+
+def test_reverse_order_negative():
+    print "test reverse order negative.....",
+    _run_test([-2, -6, -8, -100], '-100 -8 -6 -2')
+
+def test_reverse_order_negative_to_positive():
+    print "test reverse order negative to positive.....",
+    _run_test([1092, 12, 0, -2, -6, -8, -100], '-100 -8 -6 -2 0 12 1092')
+
 def _run_test(testInput, expectedOutput):
     testInput = [str(x) for x in testInput]
     proc = subprocess.Popen([argv[1]] + testInput, stdout=subprocess.PIPE)
     stdout, _ = proc.communicate()
     # import ipdb; ipdb.set_trace()
-    assert stdout.strip() == expectedOutput
+    assert stdout.strip() == expectedOutput, '{0} != {1}'.format(stdout.strip(), expectedOutput)
     print "successs"
 
 main()
