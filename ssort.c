@@ -18,4 +18,15 @@ int main(int argc, char **argv) {
 }
 
 void selSort(int *arr, int arrLen) {
+    int smallestIndex;
+    for (int i = 0; i < arrLen; i++) {
+        smallestIndex = i;
+        for (int j = (i + 1); j < arrLen; j++) {
+            if (arr[j] < arr[smallestIndex]) {
+                smallestIndex = j;
+            }
+        }
+        swap(arr, i, smallestIndex);
+    }
 }
+
