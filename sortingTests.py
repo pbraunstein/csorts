@@ -8,6 +8,10 @@ from sys import argv
 RAND_LEN = 100
 
 def main():
+    if len(argv) == 3 and argv[2] == '--stress':
+        stressTest()
+        exit(0)
+
     print "TESTING:", argv[1].upper()
 
     # test empty
@@ -161,23 +165,30 @@ def test_ten_long_range():
         inList, outString = _rand_test(-10000, 10000, RAND_LEN)
         _run_test(inList, outString)
 
-def test_one_thousand_element_sort():
-    print "test one thousand element sort.....",
+def test_one_thousand_element_sort(speak=True):
+    if speak:
+        print "test one thousand element sort.....",
     inList, outString = _rand_test(-1000, 1000, 1000)
-    _run_test(inList, outString)
+    _run_test(inList, outString, speak)
 
-def test_twenty_thousand_element_sort():
-    print "test twenty thousand element sort.....",
+def test_twenty_thousand_element_sort(speak=True):
+    if speak:
+        print "test twenty thousand element sort.....",
     inList, outString = _rand_test(-1000, 1000, 20000)
-    _run_test(inList, outString)
+    _run_test(inList, outString, speak)
 
+def stressTest():
+    for x in range(100):
+        test_one_thousand_element_sort(False)
+        test_twenty_thousand_element_sort(False)
 
-def _run_test(testInput, expectedOutput):
+def _run_test(testInput, expectedOutput, speak=True):
     testInput = [str(x) for x in testInput]
     proc = subprocess.Popen([argv[1]] + testInput, stdout=subprocess.PIPE)
     stdout, _ = proc.communicate()
     assert stdout.strip() == expectedOutput, '{0} != {1}'.format(stdout.strip(), expectedOutput)
-    print "successs"
+    if speak:
+        print "successs"
 
 def _rand_test(lowerBound, upperBound, numElements):
     inputArr = []
