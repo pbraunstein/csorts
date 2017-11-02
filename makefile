@@ -23,7 +23,7 @@ clean:
 	rm qsort
 
 test:
-	python sortingTests.py ./isort
-	python sortingTests.py ./ssort
-	python sortingTests.py ./bsort
-	python sortingTests.py ./qsort
+	time python sortingTests.py ./isort
+	time python sortingTests.py ./ssort
+	time python sortingTests.py ./bsort
+	time python sortingTests.py ./qsort
