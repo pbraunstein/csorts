@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
+import random
 import subprocess
 
 from sys import argv
+
+RAND_LEN = 100
 
 def main():
     print "TESTING:", argv[1].upper()
@@ -39,6 +42,19 @@ def main():
     test_sorted_except_zero_element()
     test_sorted_except_last_element()
     test_sorted_except_both_edges()
+
+    # repeated elements
+    test_repeated_elements()
+    test_only_repeated_elements()
+
+    # random tests
+    test_ten_small_range()
+    test_ten_medium_range()
+    test_ten_long_range()
+
+    # large input tests
+    test_one_thousand_element_sort()
+    test_twenty_thousand_element_sort()
 
     print "ALL", argv[1].upper(), "TESTS PASS"
     print
@@ -119,13 +135,60 @@ def test_sorted_except_both_edges():
     print "test sorted except both edges.....",
     _run_test([90, 1, 2, 3, 4, 0], '0 1 2 3 4 90')
 
+def test_repeated_elements():
+    print "test repeated elements.....",
+    _run_test([1, 2, 2, 3, 4, 2, 3, 6], '1 2 2 2 3 3 4 6')
+
+def test_only_repeated_elements():
+    print "test only repeated elements.....",
+    _run_test([2, 2, 2, 2, 2], '2 2 2 2 2')
+
+def test_ten_small_range():
+    print "10 small range tests....."
+    for x in range(10):
+        inList, outString = _rand_test(-5, 5, RAND_LEN)
+        _run_test(inList, outString)
+
+def test_ten_medium_range():
+    print "10 medium range tests....."
+    for x in range(10):
+        inList, outString = _rand_test(-100, 100, RAND_LEN)
+        _run_test(inList, outString)
+
+def test_ten_long_range():
+    print "10 long range tests....."
+    for x in range(10):
+        inList, outString = _rand_test(-10000, 10000, RAND_LEN)
+        _run_test(inList, outString)
+
+def test_one_thousand_element_sort():
+    print "test one thousand element sort.....",
+    inList, outString = _rand_test(-1000, 1000, 1000)
+    _run_test(inList, outString)
+
+def test_twenty_thousand_element_sort():
+    print "test twenty thousand element sort.....",
+    inList, outString = _rand_test(-1000, 1000, 20000)
+    _run_test(inList, outString)
+
+
 def _run_test(testInput, expectedOutput):
     testInput = [str(x) for x in testInput]
     proc = subprocess.Popen([argv[1]] + testInput, stdout=subprocess.PIPE)
     stdout, _ = proc.communicate()
-    # import ipdb; ipdb.set_trace()
     assert stdout.strip() == expectedOutput, '{0} != {1}'.format(stdout.strip(), expectedOutput)
     print "successs"
+
+def _rand_test(lowerBound, upperBound, numElements):
+    inputArr = []
+    for x in range(numElements):
+        inputArr.append(random.randint(lowerBound, upperBound))
+
+    sortedArr = sorted(inputArr)
+    sortedStrArr = [str(x) for x in sortedArr]
+    outputString = ' '.join(sortedStrArr)
+
+    return inputArr, outputString
 
 main()
 

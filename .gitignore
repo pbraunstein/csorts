@@ -1,4 +1,5 @@
 isort
 ssort
 bsort
+qsort
 *.dSYM
