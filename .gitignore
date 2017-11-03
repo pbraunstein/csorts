@@ -2,5 +2,6 @@ isort
 ssort
 bsort
 qsort
+msort
 *.dSYM
 .DS_Store
