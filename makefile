@@ -5,6 +5,7 @@ all:
 	make qsort
 	make msort
 	make hsort
+	make csort
 
 isort:
 	gcc -Werror isort.c sortutils.c -o isort
@@ -24,6 +25,9 @@ msort:
 hsort:
 	gcc -Werror hsort.c sortutils.c -o hsort
 
+csort:
+	gcc -Werror csort.c sortutils.c -o csort
+
 clean:
 	rm isort
 	rm ssort
@@ -31,6 +35,7 @@ clean:
 	rm qsort
 	rm msort
 	rm hsort
+	rm csort
 
 test:
 	python sortingTests.py ./isort
@@ -39,6 +44,7 @@ test:
 	python sortingTests.py ./qsort
 	python sortingTests.py ./msort
 	python sortingTests.py ./hsort
+	python sortingTests.py ./csort
 
 stressTest:
 	time python sortingTests.py ./isort --stress
@@ -47,3 +53,4 @@ stressTest:
 	time python sortingTests.py ./qsort --stress
 	time python sortingTests.py ./msort --stress
 	time python sortingTests.py ./hsort --stress
+	time python sortingTests.py ./csort --stress

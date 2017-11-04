@@ -4,5 +4,6 @@ bsort
 qsort
 msort
 hsort
+csort
 *.dSYM
 .DS_Store
