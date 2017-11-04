@@ -10,31 +10,33 @@
 
 #include "sortutils.h"
 
+int *importArray(int, char **);
 void heapSort(int *, int);
+void displayArray(int *, int);
 void buildMaxHeap(int *, int);
 void maxHeapify(int *, int, int);
 int leftIndex(int);
 int rightIndex(int);
 
 int main(int argc, char **argv) {
-    /* int *arr = readInArray(argc, argv); */
     int arrLen = argc;
-    int *arr = (int *) malloc(sizeof(int) * arrLen);
+    int *arr = importArray(argc, argv);
+    heapSort(arr, arrLen);
+    displayArray(arr, arrLen);
+    free(arr);
+}
+
+int *importArray(int argc, char **argv) {
+    int *arr = (int *) malloc(sizeof(int) * argc);
     arr[0] = INT_MIN;
-    for (int i = 1; i < arrLen; i++) {
+    for (int i = 1; i < argc; i++) {
         if (elementNotValid(argv[1])) {
             printf("ERROR: %s is not an integer\n", argv[i]);
             exit(1);
         }
         arr[i] = atoi(argv[i]);
     }
-    heapSort(arr, arrLen);
-    for (int i = 1; i < arrLen; i++) {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
-    /* printArr(arr, arrLen); */
-    /* freeArr(arr); */
+    return arr;
 }
 
 void heapSort(int *arr, int arrLen) {
@@ -46,10 +48,17 @@ void heapSort(int *arr, int arrLen) {
         maxHeapify(arr, heapSize, 1);
     }
 }
+
+void displayArray(int *arr, int arrLen) {
+    for (int i = 1; i < arrLen; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
 void buildMaxHeap(int *arr, int arrLen) {
     int iters = arrLen / 2;
     for (int i = iters; i >= 1; i--) {
-        /* printf("STARRING: %d at INDEX: %d\n", arr[i], i); */
         maxHeapify(arr, arrLen, i);
     }
 }
