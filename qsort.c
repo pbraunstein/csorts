@@ -3,7 +3,7 @@
  * Quick Sort
  */
 
-#include<stdbool.h>
+#include <stdbool.h>
 
 #include "sortutils.h"
 
