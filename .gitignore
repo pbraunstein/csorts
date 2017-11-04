@@ -3,5 +3,6 @@ ssort
 bsort
 qsort
 msort
+hsort
 *.dSYM
 .DS_Store
