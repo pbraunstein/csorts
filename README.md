@@ -18,6 +18,10 @@ This repo is a number of different sorting algorithms implemented in C.
 * Selection Sort (ssort.c)
 * Bubble Sort (bsort.c)
 * Quick Sort (qsort.c)
+* Merge Sort (msort.c)
+* Heap Sort (hsort.c)
+* Counting Sort (csort.c)
+* Radix Sort (rsort.c)
 
 ### Stress Test Example
 ![Stress test](/stressTest.png?raw=true)
